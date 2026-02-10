@@ -28,6 +28,30 @@ class CreateBarcodesTable extends Migration
             $table->string('internal_id');
             $table->string('item_code');
             $table->string('tienda_url');
+            $table->string('currency_type_id');
+            $table->decimal('sale_unit_price', 12, 4);
+            $table->decimal('print_price', 12, 4);
+
+            $table->string('p1_unit_type_id');
+            $table->decimal('p1_quantity_unit', 12, 4);
+            $table->decimal('p1_price1', 12, 4);
+            $table->decimal('p1_price2', 12, 4);
+            $table->decimal('p1_price3', 12, 4);
+            $table->decimal('p1_price_default', 12, 4);
+
+            $table->string('p2_unit_type_id');
+            $table->decimal('p2_quantity_unit', 12, 4);
+            $table->decimal('p2_price1', 12, 4);
+            $table->decimal('p2_price2', 12, 4);
+            $table->decimal('p2_price3', 12, 4);
+            $table->decimal('p2_price_default', 12, 4);
+
+            $table->string('p3_unit_type_id');
+            $table->decimal('p3_quantity_unit', 12, 4);
+            $table->decimal('p3_price1', 12, 4);
+            $table->decimal('p3_price2', 12, 4);
+            $table->decimal('p3_price3', 12, 4);
+            $table->decimal('p3_price_default', 12, 4);
             $table->timestamps();
         });
     }

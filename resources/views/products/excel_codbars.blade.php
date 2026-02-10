@@ -35,7 +35,7 @@
 							@foreach($models as $model)
 							<tr
 								style="display: none;"
-								data-item_id="{{ $model->id }}"
+								data-item_id="{{ $model->item_id }}"
 								data-name="{{ $model->name }}"
 								data-second_name="{{ $model->second_name }}"
 								data-description="{{ $model->description }}"
@@ -47,6 +47,32 @@
 								data-item_type_id="{{ $model->item_type_id }}"
 								data-internal_id="{{ $model->internal_id }}"
 								data-item_code="{{ $model->item_code }}"
+								data-currency_type_id="{{ $model->currency_type_id }}"
+								data-sale_unit_price="{{ $model->sale_unit_price }}"
+								
+								{{-- P1 --}}
+							    data-p1_unit_type_id="{{ $model->p1_unit_type_id }}"
+							    data-p1_quantity_unit="{{ $model->p1_quantity_unit }}"
+							    data-p1_price1="{{ $model->p1_price1 }}"
+							    data-p1_price2="{{ $model->p1_price2 }}"
+							    data-p1_price3="{{ $model->p1_price3 }}"
+							    data-p1_price_default="{{ $model->p1_price_default }}"
+
+							    {{-- P2 --}}
+							    data-p2_unit_type_id="{{ $model->p2_unit_type_id }}"
+							    data-p2_quantity_unit="{{ $model->p2_quantity_unit }}"
+							    data-p2_price1="{{ $model->p2_price1 }}"
+							    data-p2_price2="{{ $model->p2_price2 }}"
+							    data-p2_price3="{{ $model->p2_price3 }}"
+							    data-p2_price_default="{{ $model->p2_price_default }}"
+
+							    {{-- P3 --}}
+							    data-p3_unit_type_id="{{ $model->p3_unit_type_id }}"
+							    data-p3_quantity_unit="{{ $model->p3_quantity_unit }}"
+							    data-p3_price1="{{ $model->p3_price1 }}"
+							    data-p3_price2="{{ $model->p3_price2 }}"
+							    data-p3_price3="{{ $model->p3_price3 }}"
+							    data-p3_price_default="{{ $model->p3_price_default }}"
 							>
 								<td>
 									<input type="number" class="form-control form-control-sm text-cantidad-codbar">
@@ -73,15 +99,16 @@ $(document).ready(function () {
     $("#btn-codbar-save").click(function(e) {
         e.preventDefault();
 
-        // Limpia inputs ocultos anteriores
+        // Limpia inputs previos
         $("#form-codbar-save .input-excel").remove();
 
         let i = 0;
 
         $("#table-report tr.select").each(function() {
             const $tr = $(this);
+            const cantidad = parseInt($tr.find(".text-cantidad-codbar").val() || 0);
 
-            const cantidad = $tr.find(".text-cantidad-codbar").val() || 0;
+            if (cantidad <= 0) return;
 
             const data = {
                 cantidad: cantidad,
@@ -98,10 +125,35 @@ $(document).ready(function () {
                 item_type_id: $tr.data("item_type_id"),
                 internal_id: $tr.data("internal_id"),
                 item_code: $tr.data("item_code"),
+                currency_type_id: $tr.data("currency_type_id"),
+                sale_unit_price: $tr.data("sale_unit_price"),
+
+                // P1
+                p1_unit_type_id: $tr.data("p1_unit_type_id"),
+                p1_quantity_unit: $tr.data("p1_quantity_unit"),
+                p1_price1: $tr.data("p1_price1"),
+                p1_price2: $tr.data("p1_price2"),
+                p1_price3: $tr.data("p1_price3"),
+                p1_price_default: $tr.data("p1_price_default"),
+
+                // P2
+                p2_unit_type_id: $tr.data("p2_unit_type_id"),
+                p2_quantity_unit: $tr.data("p2_quantity_unit"),
+                p2_price1: $tr.data("p2_price1"),
+                p2_price2: $tr.data("p2_price2"),
+                p2_price3: $tr.data("p2_price3"),
+                p2_price_default: $tr.data("p2_price_default"),
+
+                // P3
+                p3_unit_type_id: $tr.data("p3_unit_type_id"),
+                p3_quantity_unit: $tr.data("p3_quantity_unit"),
+                p3_price1: $tr.data("p3_price1"),
+                p3_price2: $tr.data("p3_price2"),
+                p3_price3: $tr.data("p3_price3"),
+                p3_price_default: $tr.data("p3_price_default"),
             };
 
-            // Crea inputs hidden products[i][campo]
-            Object.keys(data).forEach((key) => {
+            Object.keys(data).forEach(key => {
                 $("#form-codbar-save").append(
                     `<input class="input-excel" type="hidden" name="products[${i}][${key}]" value="${escapeHtml(String(data[key] ?? ''))}">`
                 );
