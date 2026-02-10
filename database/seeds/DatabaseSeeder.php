@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UbigeoSeeder::class);
         $this->call(AdminTableSeeder::class);
     }
 }

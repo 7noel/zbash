@@ -15,9 +15,17 @@ class CreateBarcodesTable extends Migration
     {
         Schema::create('barcodes', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->bigInteger('item_id');
+            $table->string('second_name');
             $table->string('description');
-            $table->string('tag');
+            $table->string('text_filter');
+            $table->string('model');
+            $table->string('factory_code');
+            $table->string('barcode');
+            $table->string('technical_specifications');
+            $table->string('item_type_id');
+            $table->string('internal_id');
+            $table->string('item_code');
             $table->timestamps();
         });
     }
