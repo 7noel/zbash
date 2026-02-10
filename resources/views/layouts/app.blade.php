@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/jpeg" href="/img/icono_miraldi.gif" />
+    <link rel="icon" type="image/jpeg" href="/img/qr.png" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -337,35 +337,8 @@ $(document).ready(function () {
         $("#form-excel-codbar").submit()
     })
 
-    $("#btn-codbar-save").click(function(e) {
-        e.preventDefault()
-        i = 0
-        $(".select").each(function() {
-            codigo = $(this).children().eq(1).text()
-            descripcion = $(this).children().eq(2).text()
-            cantidad = $(this).children().eq(0).find(".text-cantidad-codbar").val()
-            elements = `<input class="input-excel" id="codigo_${i}" name="products[${i}][codigo]" type="hidden" value="${codigo}">
-            <input class="input-excel" id="descripcion_${i}" name="products[${i}][descripcion]" type="hidden" value="">
-            <input class="input-excel" id="cantidad_${i}" name="products[${i}][cantidad]" type="hidden" value="${cantidad}">`
-            $("#form-codbar-save").append(elements)
 
-            $(`#codigo_${i}`).val(codigo)
-            $(`#descripcion_${i}`).val(descripcion)
-            i = i + 1
-        })
-        $("#form-codbar-save").submit()
-        // alert('Se guardaron los registros')
-        //window.location.reload()
-    })
 
-    $(".text-cantidad-codbar").change(function () {
-        $input = $(this)
-        if ($input.val() > 0) {
-            $input.parent().parent().addClass("select")
-        } else {
-            $input.parent().parent().removeClass("select")
-        }
-    })
 
     n = $('#discount_2').val()
     n = Math.round(parseFloat(n)*1000000)/1000000
@@ -742,33 +715,6 @@ function get_oc() {
         console.log(result);
     })
 }*/
-
-function filtro_tabla(table_report_warehouse) {
-  // Declare variables 
-  var input, filter, table, tr, td, i, j, visible;
-  input = document.getElementById("search");
-  filter = input.value.toUpperCase();
-  size = filter.length
-  table = document.getElementById(table_report_warehouse);
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    visible = false;
-    /* Obtenemos todas las celdas de la fila, no sólo la primera */
-    td = tr[i].getElementsByTagName("td");
-    for (j = 0; j < td.length; j++) {
-      if (size>3 && td[j] && td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-        visible = true;
-      }
-    }
-    if (visible === true) {
-      tr[i].style.display = "";
-    } else {
-      tr[i].style.display = "none";
-    }
-  }
-}
 
 function existCodeInList(code) {
     existe_codigo = false
