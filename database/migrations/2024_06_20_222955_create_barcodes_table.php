@@ -30,7 +30,7 @@ class CreateBarcodesTable extends Migration
             $table->string('tienda_url');
             $table->string('currency_type_id');
             $table->decimal('sale_unit_price', 12, 4);
-            $table->decimal('print_price', 12, 4);
+            $table->decimal('print_price', 12, 2);
 
             $table->string('p1_unit_type_id');
             $table->decimal('p1_quantity_unit', 12, 4);
