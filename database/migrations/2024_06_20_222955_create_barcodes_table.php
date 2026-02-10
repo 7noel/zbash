@@ -27,6 +27,7 @@ class CreateBarcodesTable extends Migration
             $table->string('item_type_id');
             $table->string('internal_id');
             $table->string('item_code');
+            $table->string('tienda_url');
             $table->timestamps();
         });
     }

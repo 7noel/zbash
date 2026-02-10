@@ -72,6 +72,7 @@ class HomeController extends Controller
                 'item_type_id' => $model['item_type_id'] ?? null,
                 'internal_id' => $model['internal_id'] ?? null,
                 'item_code' => $model['item_code'] ?? null,
+                'tienda_url' => env('TIENDA_URL').$model['item_id'],
             ];
 
             for ($i = 0; $i < $cantidad; $i++) {
