@@ -12,8 +12,6 @@
 						<div class="col-sm-8">
                             <input class="form-control form-control-sm" onkeyup="filtro_tabla('table-report')" placeholder="Buscar por Codigo o Descripción" name="search" type="text" value="" id="search">
                         </div>
-                    </div>
-					<div class="form-group row">
                         <div class="col-sm-2">
                         	{!! Form::open(['route'=> ['products.codbars_save'], 'method'=>'POST', 'id'=>"form-codbar-save"]) !!}
                             <button type="submit" class="btn btn-sm btn-outline-primary" id="btn-codbar-save">{!! $icons['db'] !!} Guardar</button>
